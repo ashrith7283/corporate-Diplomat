@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: corporate-diplomat-backend
+    runtime: docker
+    rootDir: .
+    dockerfilePath: backend/Dockerfile
+    plan: starter
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: CORS_ORIGINS
+        value: https://corporate-diplomat-frontend.onrender.com
+      - key: PYTHONUNBUFFERED
+        value: "1"
+
+  - type: web
+    name: corporate-diplomat-frontend
+    runtime: docker
+    rootDir: .
+    dockerfilePath: frontend/Dockerfile
+    plan: starter
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: BACKEND_URL
+        value: https://corporate-diplomat-backend.onrender.com

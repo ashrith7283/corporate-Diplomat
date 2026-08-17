@@ -1,0 +1,3 @@
+uvloop
+openai
+python-dotenv

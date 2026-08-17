@@ -1,0 +1,42 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: corporate-diplomat-backend:latest
+    container_name: corporate-diplomat-backend
+    restart: unless-stopped
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:?Set OPENAI_API_KEY in .env}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost,http://localhost:4200}
+    volumes:
+      - ./backend/data:/app/backend/data:ro
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health').read()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - corp-net
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: corporate-diplomat-frontend:latest
+    container_name: corporate-diplomat-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_PORT:-4200}:80"
+    networks:
+      - corp-net
+
+networks:
+  corp-net:
+    driver: bridge

@@ -7,7 +7,7 @@ import { TranslateRequest, TranslateResponse } from '../models/translate.model';
   providedIn: 'root'
 })
 export class TranslateService {
-  private apiUrl = 'http://localhost:8000/api/translate';
+  private apiUrl = '/api/translate';
 
   constructor(private http: HttpClient) {}
 

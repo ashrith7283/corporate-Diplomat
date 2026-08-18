@@ -4,7 +4,7 @@ services:
     runtime: docker
     rootDir: .
     dockerfilePath: backend/Dockerfile
-    plan: starter
+    plan: free
     healthCheckPath: /api/health
     autoDeploy: true
     envVars:
@@ -20,7 +20,7 @@ services:
     runtime: docker
     rootDir: .
     dockerfilePath: frontend/Dockerfile
-    plan: starter
+    plan: free
     healthCheckPath: /
     autoDeploy: true
     envVars:

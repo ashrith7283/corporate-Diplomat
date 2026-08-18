@@ -25,4 +25,4 @@ services:
     autoDeploy: true
     envVars:
       - key: BACKEND_URL
-        value: https://corporate-diplomat-backend.onrender.com
+        value: http://corporate-diplomat-backend:8000

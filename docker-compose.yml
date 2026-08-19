@@ -29,6 +29,8 @@ services:
     image: corporate-diplomat-frontend:latest
     container_name: corporate-diplomat-frontend
     restart: unless-stopped
+    environment:
+      BACKEND_URL: ${BACKEND_URL:-http://backend:8000}
     depends_on:
       backend:
         condition: service_healthy

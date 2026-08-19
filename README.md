@@ -147,6 +147,7 @@ All runtime settings are read from environment variables. Docker Compose reads t
 | `CORS_ORIGINS`    | `http://localhost,http://localhost:4200`         | Comma-separated list of allowed CORS origins.    |
 | `FRONTEND_PORT`   | `4200`                                           | Host port the frontend (nginx) is published on.   |
 | `BACKEND_PORT`    | `8000`                                           | Host port the backend (uvicorn) is published on.  |
+| `BACKEND_URL`     | `http://backend:8000`                            | URL the frontend nginx proxies `/api/*` to. Override for external backend (e.g. Render). |
 
 ## Usage
 

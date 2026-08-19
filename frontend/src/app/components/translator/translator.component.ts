@@ -17,6 +17,7 @@ export class TranslatorComponent implements OnInit {
   error = signal('');
   loading = signal(false);
   darkMode = signal(false);
+  year = new Date().getFullYear();
 
   private platformId = inject(PLATFORM_ID);
 
